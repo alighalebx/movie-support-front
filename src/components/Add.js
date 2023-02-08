@@ -1,6 +1,6 @@
 import React from 'react'
-
-export const Add = () => {
+import "./Add.css"
+const Add = () => {
   return (
     <div className='add-page'>
         
@@ -17,3 +17,4 @@ export const Add = () => {
     </div>
   )
 }
+export default Add;
