@@ -4,6 +4,7 @@ import { BrowserRouter as Router , Routes , Route } from 'react-router-dom';
 import  Watchlist  from './components/Watchlist';
 import  Watched  from './components/Watched';
 import  Add  from './components/Add';
+import { React, useState, useEffect } from 'react';
 
 const App = () => {
  return (
