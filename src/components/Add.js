@@ -1,14 +1,15 @@
 import axios from 'axios';
 import { React, useState, useEffect } from 'react';
 import "./Add.css"
-
+import ResultCard from './ResultCard';
 const Add = () => {
   const [searchValue, setSearchValue] = useState("");
+  const [movies , setMovies] = useState([]);
   useEffect(()=>{
     axios.get(`https://localhost:7059/api/Movie/search by name?name=${searchValue}`)
     .then((response) => {
       if(response.data){
-          console.log(response.data);
+          setMovies(response.data);
       }
     }).catch((error) => console.log(error));
   }, [searchValue]);
@@ -24,9 +25,14 @@ const Add = () => {
                     onChange={(e)=> setSearchValue(e.target.value)}
                     />
                 </div>
-                <ul className='results'>
-                    
-                </ul>
+                {
+                  movies.length > 0 && <ul className="results">
+                    {movies.map((movie)=> (
+                    <li key={movie.moiveId}>
+                      {<ResultCard movie={movie}/>}
+                    </li>))}
+                  </ul>
+                }
             </div>
         </div>
     </div>
