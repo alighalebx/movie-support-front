@@ -26,12 +26,14 @@ const Add = () => {
                     />
                 </div>
                 {
+                  searchValue && 
                   movies.length > 0 && <ul className="results">
                     {movies.map((movie)=> (
                     <li key={movie.moiveId}>
                       {<ResultCard movie={movie}/>}
                     </li>))}
                   </ul>
+                  
                 }
             </div>
         </div>
