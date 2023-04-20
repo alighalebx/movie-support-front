@@ -1,7 +1,9 @@
 import React from 'react'
 import "./ResultCard.css";
-
+import { useMovieContext } from './context/GlobalContext';
+import * as actions from "./context/ActionTypes";
 const ResultCard = ({movie}) => {
+  const movieContext = useMovieContext();
   return (
     <div className='result-card'>
         <div className='poster-wrapper'>
@@ -17,10 +19,14 @@ const ResultCard = ({movie}) => {
                 {movie.realeasedate ? <h4 className='release-date'>{movie.realeasedate}</h4>: "-"}
             </div>
             <div className='controls'>
-                <button className='btn'>
+                <button onClick={()=> movieContext.MovieDispatch(
+                  {type : actions.ADD_MOVIE_TO_WATCHLIST, payload : movie,}
+                )} className='btn'>
                     Add to My Otchirisuto
                 </button>
-                <button className='btn'>
+                <button onClick={()=> movieContext.MovieDispatch(
+                  {type :actions.ADD_MOVIE_TO_WATCHED, payload :movie,}
+                )} className='btn'>
                     Add to Mita
                 </button>
             </div>
