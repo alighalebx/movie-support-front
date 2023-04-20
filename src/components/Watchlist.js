@@ -14,7 +14,7 @@ import "./Watchlist.css"
         {movieContext.watchlist.length > 0 ? (
           <div className='movie-grid'>
             {movieContext.watchlist.map((movie)=> (
-              <MovieCard key={movie.movieId} movie={movie} type = "watchedlist"/>
+              <MovieCard key={movie.moiveId} movie={movie} type = "watchedlist"/>
             ))}
             </div>
             ):(

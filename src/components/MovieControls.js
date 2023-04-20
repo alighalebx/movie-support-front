@@ -1,16 +1,24 @@
 import React from 'react'
-
-export const MovieControls = ({movie,type}) => {
+import { useMovieContext } from './context/GlobalContext';
+import * as actions from "./context/ActionTypes"
+const MovieControls = ({movie,type}) => {
+    const movieContext = useMovieContext();
   return (
     <div className='inner-card-controls'>
         {
-            type === "watchlist" && (
+            type === "watchedlist" && (
                 <>
-                <button className='ctrl-btn'>
+                <button onClick={()=> movieContext.MoviesDispatch({
+                    type : actions.ADD_MOVIE_TO_WATCHED,
+                    payload: movie,
+                })} className='ctrl-btn'>
                     <i className='fa-solid fa-eye'/>
                 </button>
 
-                <button className='ctrl-btn'>
+                <button onClick={()=> movieContext.MoviesDispatch({
+                    type : actions.REMOVE_MOVIE_FROM_WATCHLIST,
+                    payload : movie.moiveId,
+                })} className='ctrl-btn'>
                     <i className='fa-fw fa fa-times'/>
                 </button>
                 

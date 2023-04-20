@@ -25,7 +25,7 @@
     border: 3px solid var(--secondary);
 }
 
-.inner-card-controls {
+.inner-card-controls{
     display: flex;
     align-items: center;
     position: absolute;
