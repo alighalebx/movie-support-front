@@ -9,7 +9,7 @@ import "./Watchlist.css"
       <div className='container'>
         <div className='main-heading'>
           <h1>My Watchlist</h1>
-          <span className='movies-count'>4Movies</span>
+          <span className='movies-count'>{movieContext.watchlist.length}{movieContext.watchlist.length === 1 ? "Movie" : "Movies"}</span>
         </div>
         {movieContext.watchlist.length > 0 ? (
           <div className='movie-grid'>
