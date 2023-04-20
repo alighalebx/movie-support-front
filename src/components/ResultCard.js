@@ -4,6 +4,10 @@ import { useMovieContext } from './context/GlobalContext';
 import * as actions from "./context/ActionTypes";
 const ResultCard = ({movie}) => {
   const movieContext = useMovieContext();
+  const storedMovie = movieContext.watchlist.find((o)=> o.moiveId === movie.moiveId);
+  const storedMovieWatched = movieContext.watched.find((o)=> o.moiveId === movie.moiveId);
+  const WatchlistDisabled = storedMovie ? true : storedMovieWatched ? true : false;
+  const watchedDisabled = storedMovieWatched ? true : false;
   return (
     <div className='result-card'>
         <div className='poster-wrapper'>
@@ -19,14 +23,19 @@ const ResultCard = ({movie}) => {
                 {movie.realeasedate ? <h4 className='release-date'>{movie.realeasedate}</h4>: "-"}
             </div>
             <div className='controls'>
-                <button onClick={()=> movieContext.MovieDispatch(
-                  {type : actions.ADD_MOVIE_TO_WATCHLIST, payload : movie,}
-                )} className='btn'>
+                <button onClick={()=> movieContext.MoviesDispatch(
+                  {type : actions.ADD_MOVIE_TO_WATCHLIST, payload : movie}
+                )} className='btn'
+                  disabled={WatchlistDisabled}
+                >
+                  
                     Add to My Otchirisuto
                 </button>
-                <button onClick={()=> movieContext.MovieDispatch(
+                <button onClick={()=> movieContext.MoviesDispatch(
                   {type :actions.ADD_MOVIE_TO_WATCHED, payload :movie,}
-                )} className='btn'>
+                )} className='btn'
+                  disabled={watchedDisabled}
+                >
                     Add to Mita
                 </button>
             </div>
